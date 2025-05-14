@@ -63,4 +63,7 @@ Resultado: 100.00 BRL = 20.00 USD
 com.google.code.gson:gson:2.10.1
 
 ## 🧠 Dica
+Adicione o .env ao seu .gitignore para evitar o vazamento da API key:
+```
 .env
+```
