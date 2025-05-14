@@ -14,7 +14,12 @@ public class API {
     public Currency fetchHttp(String moeda) throws IOException, InterruptedException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         moeda = moeda.toUpperCase();
-        String uri = "https://v6.exchangerate-api.com/v6/8c1c798f9ae89b8f4393dab1/latest/" + moeda;
+        String apiKey = EnvLoader.get("EXCHANGE_API_KEY");
+        if (apiKey == null || apiKey.isEmpty()) {
+            throw new IllegalStateException("API KEY não encontrada no arquivo .env");
+        }
+
+        String uri = "https://v6.exchangerate-api.com/v6/" + apiKey + "/latest/" + moeda;
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
